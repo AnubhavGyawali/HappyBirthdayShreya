@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Shreya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-deep: #02050e;
+            --bg-accent: #0f172a;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --purple-haze: rgba(147, 51, 234, 0.15);
+            --blue-haze: rgba(59, 130, 246, 0.15);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- BACKGROUND EFFECTS (Aurora & Stars) --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .aurora-glow {
+            position: fixed;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 80%;
+            background: radial-gradient(circle at 50% 50%, var(--blue-haze), var(--purple-haze), transparent 70%);
+            filter: blur(80px);
+            animation: auroraShift 15s infinite alternate ease-in-out;
+            z-index: -2;
+            opacity: 0.6;
+        }
+
+        @keyframes auroraShift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 10%) scale(1.1); }
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- TYPOGRAPHY & HERO --- */
+        header {
+            text-align: center;
+            margin-top: 10vh;
+            animation: fadeUp 1.5s ease-out;
+        }
+
+        .eyebrow {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            color: var(--gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            background: linear-gradient(to right, #fff, #e2e8f0, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h1 span {
+            display: block;
+            font-size: 1.2em;
+            background: linear-gradient(to right, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* --- INTERACTIVE SECTION: DAISY ORACLE --- */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* Pure CSS Daisy (Elegant Version) */
+        .daisy-wrapper {
+            position: relative;
+            width: 200px;
+            height: 280px;
+            margin: 0 auto;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            animation: swayStem 5s ease-in-out infinite;
+            transform-origin: center 240px;
+        }
+
+        @keyframes swayStem {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(2deg);
+            }
+            50% {
+                transform: rotate(0deg);
+            }
+            75% {
+                transform: rotate(-2deg);
+            }
+        }
+
+        .daisy-center {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            background: radial-gradient(circle at 35% 35%, #ffed4e, #ffd700 40%, #daa520 70%, #b8860b 100%);
+            border-radius: 50%;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset -2px -2px 5px rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+
+        .petal {
+            position: absolute;
+            width: 22px;
+            height: 70px;
+            background: linear-gradient(to bottom, #fff 0%, #f5f5f5 60%, #f0f0f0 100%);
+            border-radius: 50px;
+            top: 96px;
+            left: 50%;
+            transform-origin: center 10px; /* Pivot point */
+            margin-left: 2px;
+            z-index: 5;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .petal:hover {
+            background: #fff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.6);
+        }
+
+        .petal.plucked {
+            transform: translate(0, 150px) rotate(45deg) !important;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Stem styling - unified with wrapper */
+        .stem {
+            position: absolute;
+            width: 3px;
+            height: 120px;
+            background: linear-gradient(to bottom, #4a7c2c, #2d5016, #1a2e0b);
+            top: 72px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border-radius: 2px;
+            box-shadow: inset -1px 0 2px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        /* Left leaf */
+        .stem::before {
+            content: '';
+            position: absolute;
+            width: 13px;
+            height: 32px;
+            background: linear-gradient(135deg, #5a9e3f 0%, #4a7c2c 50%, #3a5c1c 100%);
+            border-radius: 0 50% 50% 0;
+            top: 32px;
+            left: -11px;
+            transform: rotate(-30deg);
+            z-index: 3;
+            box-shadow: inset 1px 1px 3px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Right leaf */
+        .stem::after {
+            content: '';
+            position: absolute;
+            width: 13px;
+            height: 32px;
+            background: linear-gradient(225deg, #5a9e3f 0%, #4a7c2c 50%, #3a5c1c 100%);
+            border-radius: 50% 0 0 50%;
+            top: 68px;
+            right: -11px;
+            transform: rotate(30deg);
+            z-index: 3;
+            box-shadow: inset -1px 1px 3px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Blue Glass Vase - Unified positioning */
+        .vase {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 110px;
+            z-index: 3;
+            pointer-events: none;
+            z-index: 3;
+            background: 
+                linear-gradient(90deg, 
+                    rgba(0, 100, 200, 0.9) 0%, 
+                    rgba(30, 144, 255, 0.95) 20%,
+                    rgba(65, 165, 255, 1) 35%,
+                    rgba(30, 144, 255, 0.95) 65%,
+                    rgba(0, 100, 200, 0.9) 80%,
+                    rgba(0, 80, 180, 0.85) 100%
+                ),
+                linear-gradient(180deg,
+                    rgba(100, 180, 255, 0.6) 0%,
+                    rgba(30, 144, 255, 0.8) 40%,
+                    rgba(0, 100, 200, 0.95) 60%,
+                    rgba(0, 60, 160, 1) 100%
+                );
+            background-size: 100% 100%, 100% 100%;
+            border-radius: 45% 45% 50% 50% / 20% 20% 40% 40%;
+            box-shadow: 
+                inset -25px 20px 40px rgba(0, 0, 0, 0.4),
+                inset 25px 20px 35px rgba(255, 255, 255, 0.15),
+                inset -5px -10px 15px rgba(0, 50, 150, 0.3),
+                0 30px 60px rgba(0, 0, 0, 0.5),
+                0 15px 30px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+
+        /* Vase neck - narrow opening */
+        .vase::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 25%;
+            right: 25%;
+            width: 50%;
+            height: 10px;
+            background: 
+                linear-gradient(180deg,
+                    rgba(100, 180, 255, 0.8) 0%,
+                    rgba(30, 144, 255, 0.9) 100%
+                );
+            border-radius: 8px 8px 2px 2px;
+            box-shadow: 
+                inset -3px -2px 5px rgba(0, 0, 0, 0.3),
+                inset 3px 2px 5px rgba(255, 255, 255, 0.2),
+                0 3px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Vase rim - top edge */
+        .vase::after {
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: 20%;
+            right: 20%;
+            width: 60%;
+            height: 3px;
+            background: 
+                linear-gradient(90deg,
+                    rgba(100, 180, 255, 0.7) 0%,
+                    rgba(150, 200, 255, 0.9) 50%,
+                    rgba(100, 180, 255, 0.7) 100%
+                );
+            border-radius: 2px;
+            box-shadow: 
+                0 2px 5px rgba(0, 0, 0, 0.4),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Unified handle positioning - symmetrical around wrapper center */
+        .daisy-wrapper::before {
+            content: '';
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            margin-left: -65px;
+            width: 17px;
+            height: 42px;
+            border: 2px solid #5dade2;
+            border-radius: 50% 0 0 50%;
+            box-shadow: inset 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .daisy-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 25px;
+            right: 50%;
+            margin-right: -65px;
+            width: 17px;
+            height: 42px;
+            border: 2px solid #5dade2;
+            border-radius: 0 50% 50% 0;
+            box-shadow: inset -2px 0 5px rgba(0,0,0,0.1);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .oracle-message {
+            min-height: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* --- ORB CATCHER (Replaces Falling Text) --- */
+        .orb-area {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .floating-orb {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(174, 214, 240, 0.2));
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--blue-haze);
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: transparent;
+            user-select: none;
+        }
+
+        .floating-orb:hover, .floating-orb:active {
+            transform: scale(1.3);
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* --- TIMELINE (Elegant) --- */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .moment {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .moment::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .moment h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .moment p {
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* --- 3D FLIP CARD --- */
+        .card-perspective {
+            perspective: 1500px;
+            width: 100%;
+            max-width: 400px;
+            height: 550px;
+            margin: 20px auto;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #fff, #f8fafc);
+            transform: rotateY(180deg);
+            color: #1e293b;
+            text-align: center;
+        }
+
+        .card-msg {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+            margin-top: 20px;
+        }
+
+        .stamp {
+            border: 2px solid var(--gold);
+            padding: 10px 20px;
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+
+        /* --- SURPRISE BUTTON --- */
+        .magic-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 15px 40px;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magic-btn:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Candle styles for the Make A Wish area */
+        .candle-wrap { display: inline-flex; align-items: flex-end; gap: 14px; position: relative; }
+        .candles { display: flex; gap: 8px; align-items: flex-end; pointer-events: none; }
+        .candle { width: 18px; height: 48px; position: relative; }
+        .candle-body { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 12px; height: 36px; background: linear-gradient(#fff8e6, #ffd27a); border-radius: 3px; box-shadow: inset 0 -6px 8px rgba(0,0,0,0.06); }
+        .wick { position: absolute; left: 50%; transform: translateX(-50%); bottom: 36px; width: 2px; height: 6px; background: #222; border-radius:1px; }
+        .flame { position: absolute; left: 50%; transform: translateX(-50%); bottom: 42px; width: 10px; height: 16px; pointer-events: none; border-radius: 50% 50% 40% 40%; background: radial-gradient(circle at 50% 30%, #fff, #ffd700 35%, #ff8a00 65%); filter: blur(0.4px); animation: flameFlicker 160ms infinite; transform-origin: 50% 85%; }
+        .flame.blow { animation: none !important; transform: translateX(-50%) scale(0.15) translateY(-6px); opacity: 0; transition: transform 600ms cubic-bezier(.2,.9,.2,1), opacity 600ms ease-out; }
+
+        /* --- UTILS --- */
+        .hidden { display: none; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .container { gap: 40px; padding: 20px; }
+            .card-perspective { height: 450px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aurora-glow"></div>
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="container">
+        <header>
+            <span class="eyebrow">The Special Day</span>
+            <h1>Happy Birthday<br><span>Shreya</span></h1>
+            <p class="subtitle">May your year be as radiant as the stars and as magical as the northern lights.</p>
+        </header>
+
+        <div class="glass-panel">
+            <span class="game-title">Pluck The Petal</span>
+            <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 10px;">Pluck (tap) a petal to reveal a truth about you hehe.</p>
+            
+            <div class="daisy-wrapper" id="daisy">
+                <div class="daisy-center"></div>
+                <div class="stem"></div>
+                <div class="vase"></div>
+            </div>
+
+            <div class="oracle-message" id="oracleText"></div>
+        </div>
+
+        <div class="glass-panel" style="text-align: left;">
+            <div style="text-align: center; width: 100%; margin-bottom: 30px;">
+                <span class="game-title">Milestones</span>
+            </div>
+            
+            <div class="timeline">
+                <div class="moment">
+                    <h3>The Beginning</h3>
+                    <p>The world got a little stupid and fun and great and lame and happy since the day you arrived. Immautre, Grade 7, 8, 9 and 10, truly school life has been way better because you were in it. Cheers to all the time we laughed together, shared inside jokes and all unforgettable moments.</p>
+                </div>
+                <div class="moment">
+                    <h3>The Journey</h3>
+                    <p>Collecting memories (current chow chow was tastyyy,thank uuu), completing challenges (see exam), and growing more beautiful every day. I will never forget all those memories ingraved in my soul from our school life, for example: you geting angry because i didnt teach you in a test (i am sooooo sorrryyy again), us trying to solve omath ko limit ko qns but failing so bad, all those hairband pulls lmao and manyyyyy more, so much more I can type all day hehe. </p>
+                </div>
+                <div class="moment">
+                    <h3>Today</h3>
+                    <p>Celebrating the amazing person you have become. Happiest Bithday Shreya, You are a kind soul and you  deserve the best in your life and i will pray to see you get everything you have ever wanted in your life. Though we dont know what the future holds, what challenges you might have to face just remeber no matter if you are 16 or 60 i will always be there for you. Happy Birthday Bestiee.❤️ </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <span class="game-title">Capture the Light</span>
+            <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 20px;">Touch the floating orbs.</p>
+            <div class="orb-area" id="orbArea"></div>
+        </div>
+
+        <div class="card-perspective" onclick="this.querySelector('.card-inner').classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front">
+                    <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 3rem;">SWEEET 16!!!</h2>
+                    <p style="margin-top: 10px; color: #94a3b8; letter-spacing: 2px;">TAP TO OPEN</p>
+                </div>
+                <div class="card-face card-back">
+                    <h3 style="font-family:'Playfair Display'; font-size: 1.5rem; color:#1e293b;">Dearest Shreya,</h3>
+                    <p class="card-msg">
+                        "Hi Shreyaaa, Hope you have the best birthday ever, After meeting in garde seven you have been only one of those few people I have cared about, hope this new year brings new oppourtunities, fun and happiness in your life. In a universe full of stars, you shine the brightest. May this birthday bring you as much joy as you bring to everyone around you. Keep blooming. Happy Birthday!" (i need a good chocolate haiiii)
+                    </p>
+                    <div class="stamp">WITH LOVE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="candle-wrap">
+            <div class="candles" aria-hidden="true"></div>
+            <button class="magic-btn" onclick="triggerFinale()">MAKE A WISH *tap*</button>
+        </div>
+
+        <footer style="margin-top: 40px; color: #555; font-size: 0.8rem; text-align: center;">
+            Designed for you
+        </footer>
+    </div>
+
+    <script>
+        // --- 1. BACKGROUND PARTICLES (CONSTELLATION EFFECT) ---
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2;
+                this.opacity = Math.random();
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if(this.x < 0) this.x = width;
+                if(this.x > width) this.x = 0;
+                if(this.y < 0) this.y = height;
+                if(this.y > height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+
+        for(let i=0; i<100; i++) particles.push(new Star());
+
+        function animateBg() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            // Connect stars close to each other for constellation effect
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.lineWidth = 1;
+            for(let i=0; i<particles.length; i++){
+                for(let j=i; j<particles.length; j++){
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if(dist < 100){
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateBg);
+        }
+        animateBg();
+
+        // --- 2. DAISY LOGIC ---
+        const daisyContainer = document.getElementById('daisy');
+        const oracleText = document.getElementById('oracleText');
+        const compliments = [
+            "Cute.", "Pure Stupidityyyyy.", "Kind Heart.", 
+            "A True Gem.", "iris enjoyerrrrrr.", "Beautiful Soul.", "Xhitto risaunee hehe.", "fuchhiiii.", "Bad Sleep Habit.", "Bestie.", "booookkkk and manwha or something lover hehehehe", "Pagal."
+        ];
+
+        // Create Petals
+        const totalPetals = 12;
+        const angleStep = 360 / totalPetals;
+
+        for (let i = 0; i < totalPetals; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            // Rotate around the center
+            petal.style.transform = `translate(-50%, -100%) rotate(${i * angleStep}deg) translateY(-15px)`;
+
+            // Attach the specific message for this petal (uses the compliments array order)
+            petal.dataset.message = compliments[i] || '';
+
+            petal.onclick = (e) => {
+                e.stopPropagation();
+                if (!petal.classList.contains('plucked')) {
+                    petal.classList.add('plucked');
+
+                    // Show this petal's specific message
+                    oracleText.style.opacity = 0;
+                    setTimeout(() => {
+                        oracleText.textContent = petal.dataset.message;
+                        oracleText.style.opacity = 1;
+                    }, 200);
+
+                    // Add sparkles at click
+                    spawnSparkles(e.clientX, e.clientY);
+                }
+            };
+            daisyContainer.appendChild(petal);
+        }
+
+        // --- 3. ORB CATCHER ---
+        const orbArea = document.getElementById('orbArea');
+        const words = ["Hope", "Joy", "Love", "Dream", "Wish"];
+
+        function createOrb() {
+            const orb = document.createElement('div');
+            orb.className = 'floating-orb';
+            
+            // Random Pos
+            const x = Math.random() * (orbArea.offsetWidth - 40);
+            const y = Math.random() * (orbArea.offsetHeight - 40);
+            orb.style.left = x + 'px';
+            orb.style.top = y + 'px';
+
+            // Interaction
+            orb.onmouseover = orb.ontouchstart = (e) => {
+                if(e.type === 'touchstart') e.preventDefault();
+                orb.style.transform = "scale(0)";
+                orb.style.opacity = "0";
+                spawnSparkles(e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
+                setTimeout(() => orb.remove(), 300);
+            };
+
+            orbArea.appendChild(orb);
+            
+            // Auto remove
+            setTimeout(() => {
+                if(orb.parentNode) orb.remove();
+            }, 4000);
+        }
+
+        setInterval(createOrb, 800);
+
+        // --- 4. FINALE FIREWORKS (Sparkles) ---
+        function spawnSparkles(x, y) {
+            const count = 20;
+            for(let i=0; i<count; i++) {
+                const s = document.createElement('div');
+                s.style.position = 'fixed';
+                s.style.left = x + 'px';
+                s.style.top = y + 'px';
+                s.style.width = Math.random() * 4 + 2 + 'px';
+                s.style.height = s.style.width;
+                s.style.background = `hsl(${Math.random()*50 + 40}, 100%, 70%)`; // Gold/Yellow spectrum
+                s.style.borderRadius = '50%';
+                s.style.pointerEvents = 'none';
+                s.style.zIndex = '9999';
+                document.body.appendChild(s);
+
+                // Animate
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 100 + 50;
+                
+                const anim = s.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: `translate(${Math.cos(angle)*velocity}px, ${Math.sin(angle)*velocity}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 800,
+                    easing: 'ease-out'
+                });
+
+                anim.onfinish = () => s.remove();
+            }
+        }
+
+        // --- Candle creation and blow logic ---
+        function createCandles(count = 4){
+            const container = document.querySelector('.candles');
+            if(!container) return;
+            container.innerHTML = '';
+            for(let i=0;i<count;i++){
+                const c = document.createElement('div'); c.className = 'candle';
+                const body = document.createElement('div'); body.className = 'candle-body';
+                const wick = document.createElement('div'); wick.className = 'wick';
+                const flame = document.createElement('div'); flame.className = 'flame';
+                // tiny random scale/offset for natural look
+                const scale = 0.9 + Math.random()*0.2;
+                c.style.transform = `scale(${scale})`;
+                c.appendChild(body); c.appendChild(wick); c.appendChild(flame);
+                container.appendChild(c);
+            }
+        }
+
+        function blowCandle(){
+            const flames = document.querySelectorAll('.candle .flame');
+            flames.forEach((flame, idx) => {
+                setTimeout(()=> flame.classList.add('blow'), idx * 90);
+            });
+        } // i forever  will  love you shreya you  are the best thng that has ever happened to me// 
+
+        function triggerFinale() {
+            // extinguish candles first
+            blowCandle();
+
+            // Golden Rain
+            let interval = setInterval(() => {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                spawnSparkles(x, y);
+            }, 50);
+
+            const btn = document.querySelector('.magic-btn');
+            btn.textContent = "WISH GRANTED ✨";
+            
+            setTimeout(() => {
+                clearInterval(interval);
+                btn.textContent = "MAKE A WISH";
+                // restore flames after a short delay
+                setTimeout(()=>{
+                    document.querySelectorAll('.flame').forEach(f=>f.classList.remove('blow'));
+                }, 900);
+            }, 4000);
+        }
+
+        // create candles when script runs (DOM is ready since script is at end)
+        createCandles(4);
+
+    </script>
+</body>
